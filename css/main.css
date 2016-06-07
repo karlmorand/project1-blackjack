@@ -1,0 +1,28 @@
+body {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  font-size: 15vw;
+  margin: 0 auto;
+  color: #FF7200;
+}
+
+h2 {
+  display: block;
+  background-color: #FF7200;
+  text-align: center;
+  font-size: 6vw;
+  color: white;
+}
+
+p {
+  font-family: Helvetica, sans-serif;
+  margin: 5%;
+}
+
+button {
+
+}
