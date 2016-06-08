@@ -4,7 +4,10 @@ $(function(){
 
 // Global variables
 var $deck = [];
-function buildDeck(){
+
+
+
+function buildDeck(){ //builds the deck of cards and adds them to $deck array
   for (var i = 2; i <= 10; i++) {
     $deck.push(i+'c', i+'d', i+'h',i+'s');
   }
@@ -12,8 +15,7 @@ function buildDeck(){
   console.log($deck);
   console.log($deck.length);
 }
-function launchScreen(){
-  // Loads the page title, rules, dealer guidleines, and a start button to begin playing the game
+function launchScreen(){ // Loads the page title, rules, dealer guidleines, and a start button to begin playing the game
   var $heading = $('<h1>').text('Blackjack');
   $('body').append($heading);
 
@@ -35,7 +37,7 @@ function launchScreen(){
   $('body').append($startButton);
 }
 
-function shuffleDeal(){
+function createTable(){//creates the card table and hit and hold buttons and finally calls shuffleDeal to begin the game
   buildDeck();
   console.log('entered shuffleDeal');
   var $cardTable = $('<div>').addClass('cardTable');
@@ -66,6 +68,7 @@ function shuffleDeal(){
 }
 
 function dealHand(){
+  //get a random number that is up to the length of the cards array, pull the card at that index and assign it to an array of the player or dealers hand, remove the item from the array
 
 
 }
