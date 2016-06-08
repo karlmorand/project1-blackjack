@@ -11,11 +11,12 @@ h1 {
 }
 
 h2 {
-  display: block;
+  width: 100vw;
   background-color: #FF7200;
   text-align: center;
   font-size: 6vw;
   color: white;
+  margin-top: 0;
 }
 
 p {
@@ -23,6 +24,32 @@ p {
   margin: 5%;
 }
 
-button {
+.cardTable {
+  background-color: green;
+  width: 100vw;
+  height: 50vh;
+  justify-content: center;
+}
+
+.playerCard {
+  display: inline-block;
+  width: 30vw;
+  height: 40vw;
+  background-color: orange;
+  margin: 5%;
+}
+
+#dealerArea {
+  background-color: grey;
+  width: 100vw;
+  height: 40vh;
+  justify-content: center;
+}
+.dealerCard {
+  display: inline-block;
+  width: 30vw;
+  height: 40vw;
+  background-color: orange;
+  margin: 5%;
 
 }

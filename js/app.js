@@ -21,15 +21,31 @@ function launchScreen(){
   $dealerGuideDiv.append($dealerGuide);
   $('body').append($dealerGuideDiv);
 
-  var $startButton = $('<button>').text('Start Game').click(shuffleDeal)
+  var $startButton = $("<button>").text('Start Game').click(shuffleDeal).attr('id', 'startButton');
   $('body').append($startButton);
 }
 
 function shuffleDeal(){
   console.log('entered shuffleDeal');
   var $cardTable = $('<div>').addClass('cardTable');
+
+  var $dealerArea = $('<div>').attr('id','dealerArea');
+  var $dealerCardOne = $('<div>').addClass('dealerCard');
+  var $dealerCardTwo = $('<div>').addClass('dealerCard');
+  var $dealerLabel = $('<h2>').text("Dealer's Cards");
+  $dealerArea.append($dealerLabel, $dealerCardOne, $dealerCardTwo);
+
+
+  var $playerLabel = $('<h2>').text("Your Cards");
   var $playerCardOne = $('<div>').addClass('playerCard');
   var $playerCardTwo = $('<div>').addClass('playerCard');
-  $('body').append($cardTable);
+  $cardTable.append($playerLabel, $playerCardOne,$playerCardTwo);
+  $('.instructions').remove();
+
+  $('body').append($dealerArea,$cardTable);
+  $('#startButton').remove();
+
+
+
 
 }
