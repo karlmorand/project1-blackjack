@@ -2,6 +2,16 @@ $(function(){
   launchScreen()
 })
 
+// Global variables
+var $deck = [];
+function buildDeck(){
+  for (var i = 2; i <= 10; i++) {
+    $deck.push(i+'c', i+'d', i+'h',i+'s');
+  }
+  $deck.push('js','qs','ks','as','jd','qd','kd','ad','jc','qc','kc','ac','jh','qh','kh','ah')
+  console.log($deck);
+  console.log($deck.length);
+}
 function launchScreen(){
   // Loads the page title, rules, dealer guidleines, and a start button to begin playing the game
   var $heading = $('<h1>').text('Blackjack');
@@ -21,33 +31,31 @@ function launchScreen(){
   $dealerGuideDiv.append($dealerGuide);
   $('body').append($dealerGuideDiv);
 
-  var $startButton = $("<button>").text('Start Game').click(shuffleDeal).attr('id', 'startButton');
+  var $startButton = $("<button>").text('Start Game').click(shuffleDeal).attr('id', 'startButton').addClass('button');
   $('body').append($startButton);
 }
 
 function shuffleDeal(){
+  buildDeck();
   console.log('entered shuffleDeal');
   var $cardTable = $('<div>').addClass('cardTable');
 
   var $dealerArea = $('<div>').attr('id','dealerArea');
-  var $dealerCardOne = $('<div>').addClass('dealerCard');
-  var $dealerCardTwo = $('<div>').addClass('dealerCard');
   var $dealerLabel = $('<h2>').text("Dealer's Cards");
-  $dealerArea.append($dealerLabel, $dealerCardOne, $dealerCardTwo);
+  $dealerArea.append($dealerLabel);
 
 
   var $playerLabel = $('<h2>').text("Your Cards");
-  var $playerCardOne = $('<div>').addClass('playerCard');
-  var $playerCardTwo = $('<div>').addClass('playerCard');
-  $cardTable.append($playerLabel, $playerCardOne,$playerCardTwo);
+
+  $cardTable.append($playerLabel);
   $('.instructions').remove();
 
 
 
   //Removing the start button and adding hit and hold buttons
   $('#startButton').remove();
-  var $hitButton = $('<button>').text('Hit').attr('id','hitButton');
-  var $holdButton = $('<button>').text('Hold').attr('id','holdButton');
+  var $hitButton = $('<button>').text('Hit').attr('id','hitButton').addClass('button');
+  var $holdButton = $('<button>').text('Hold').attr('id','holdButton').addClass('button');
   $cardTable.append($hitButton, $holdButton);
 
   $('body').append($dealerArea,$cardTable);
@@ -56,3 +64,13 @@ function shuffleDeal(){
 
 
 }
+
+function dealHand(){
+
+
+}
+
+
+// dealHand function deals initial two cards to player and dealer
+// then it checks to see if anyone has 21 by visiting the checkwin function
+// then it
