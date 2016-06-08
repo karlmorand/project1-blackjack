@@ -42,8 +42,15 @@ function shuffleDeal(){
   $cardTable.append($playerLabel, $playerCardOne,$playerCardTwo);
   $('.instructions').remove();
 
-  $('body').append($dealerArea,$cardTable);
+
+
+  //Removing the start button and adding hit and hold buttons
   $('#startButton').remove();
+  var $hitButton = $('<button>').text('Hit').attr('id','hitButton');
+  var $holdButton = $('<button>').text('Hold').attr('id','holdButton');
+  $cardTable.append($hitButton, $holdButton);
+
+  $('body').append($dealerArea,$cardTable);
 
 
 
