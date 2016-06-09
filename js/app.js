@@ -77,6 +77,7 @@ function dealHand(){//get a random number that is up to the length of the cards 
       $deck.splice(random, 1);
     }
   }
+  console.log($deck.length);
 
 }
 

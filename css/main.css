@@ -40,17 +40,19 @@ p {
 }
 
 #dealerTable {
+  display: flex;
   background-color: grey;
   width: 100vw;
   height: 40vh;
   justify-content: center;
 }
 .dealerCard {
+  flex-shrink: 1;
   display: inline-block;
-  width: 30vw;
-  height: 40vw;
+  width: 20vw;
+  height: 30vw;
   background-color: orange;
-  margin: 5%;
+  margin: 3%;
 
 }
 button {
