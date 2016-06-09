@@ -64,7 +64,7 @@ function createTable(){//creates the card table and hit and hold buttons and fin
 
 function dealHand(){//get a random number that is up to the length of the cards array, pull the card at that index and assign it to an array of the player or dealers hand, remove the item from the array
 
-  for (var i = 2; i < 20; i++) {
+  for (var i = 2; i < 6; i++) {
     if (i%2===0) {//player
       var random = Math.floor(Math.random()*$deck.length);
       $playerHand.push($deck[random]);
