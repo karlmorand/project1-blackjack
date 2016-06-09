@@ -4,7 +4,8 @@ $(function(){
 
 // Global variables
 var $deck = [];
-
+var $playerHand = [];
+var $dealerHand = [];
 
 
 function buildDeck(){ //builds the deck of cards and adds them to $deck array
@@ -33,7 +34,7 @@ function launchScreen(){ // Loads the page title, rules, dealer guidleines, and 
   $dealerGuideDiv.append($dealerGuide);
   $('body').append($dealerGuideDiv);
 
-  var $startButton = $("<button>").text('Start Game').click(shuffleDeal).attr('id', 'startButton').addClass('button');
+  var $startButton = $("<button>").text('Start Game').click(createTable).attr('id', 'startButton').addClass('button');
   $('body').append($startButton);
 }
 
@@ -46,13 +47,10 @@ function createTable(){//creates the card table and hit and hold buttons and fin
   var $dealerLabel = $('<h2>').text("Dealer's Cards");
   $dealerArea.append($dealerLabel);
 
-
   var $playerLabel = $('<h2>').text("Your Cards");
 
   $cardTable.append($playerLabel);
   $('.instructions').remove();
-
-
 
   //Removing the start button and adding hit and hold buttons
   $('#startButton').remove();
@@ -61,16 +59,25 @@ function createTable(){//creates the card table and hit and hold buttons and fin
   $cardTable.append($hitButton, $holdButton);
 
   $('body').append($dealerArea,$cardTable);
-
-
-
-
+  dealHand();
 }
 
-function dealHand(){
-  //get a random number that is up to the length of the cards array, pull the card at that index and assign it to an array of the player or dealers hand, remove the item from the array
+function dealHand(){//get a random number that is up to the length of the cards array, pull the card at that index and assign it to an array of the player or dealers hand, remove the item from the array
 
-
+  for (var i = 2; i < 6; i++) {
+    if (i%2===0) {
+      var random = Math.floor(Math.random()*52);
+      $playerHand.push($deck[random]);
+      $deck.splice(random, 1);
+    } else {
+      var random = Math.floor(Math.random()*52);
+      $dealerHand.push($deck[random]);
+      $deck.splice(random, 1);
+    }
+  }
+  console.log($dealerHand);
+  console.log($playerHand);
+  console.log($deck);
 }
 
 
