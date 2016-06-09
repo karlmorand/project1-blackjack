@@ -41,11 +41,11 @@ function launchScreen(){ // Loads the page title, rules, dealer guidleines, and 
 function createTable(){//creates the card table and hit and hold buttons and finally calls shuffleDeal to begin the game
   buildDeck();
   console.log('entered shuffleDeal');
-  var $cardTable = $('<div>').addClass('cardTable');
+  var $cardTable = $('<div>').attr('id','cardTable');
 
-  var $dealerArea = $('<div>').attr('id','dealerArea');
+  var $dealerTable = $('<div>').attr('id','dealerTable');
   var $dealerLabel = $('<h2>').text("Dealer's Cards");
-  $dealerArea.append($dealerLabel);
+  $dealerTable.append($dealerLabel);
 
   var $playerLabel = $('<h2>').text("Your Cards");
 
@@ -58,26 +58,26 @@ function createTable(){//creates the card table and hit and hold buttons and fin
   var $holdButton = $('<button>').text('Hold').attr('id','holdButton').addClass('button');
   $cardTable.append($hitButton, $holdButton);
 
-  $('body').append($dealerArea,$cardTable);
+  $('body').append($dealerTable,$cardTable);
   dealHand();
 }
 
 function dealHand(){//get a random number that is up to the length of the cards array, pull the card at that index and assign it to an array of the player or dealers hand, remove the item from the array
 
   for (var i = 2; i < 6; i++) {
-    if (i%2===0) {
+    if (i%2===0) {//player
       var random = Math.floor(Math.random()*52);
       $playerHand.push($deck[random]);
+      $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
       $deck.splice(random, 1);
-    } else {
+    } else {//dealer
       var random = Math.floor(Math.random()*52);
+      $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
       $dealerHand.push($deck[random]);
       $deck.splice(random, 1);
     }
   }
-  console.log($dealerHand);
-  console.log($playerHand);
-  console.log($deck);
+
 }
 
 
