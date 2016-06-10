@@ -61,7 +61,6 @@ function createTable(){//creates the card table and hit and hold buttons and fin
   $('body').append($dealerTable,$cardTable);
   dealHand();
 }
-
 function dealHand(){//get a random number that is up to the length of the cards array, pull the card at that index and assign it to an array of the player or dealers hand, remove the item from the array
 
   for (var i = 2; i < 6; i++) {
@@ -75,18 +74,10 @@ function dealHand(){//get a random number that is up to the length of the cards 
       $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
       $dealerHand.push($deck[random]);
       $deck.splice(random, 1);
-    }
+      }
   }
-  console.log($deck.length);
-  console.log(checkHand($dealerHand));
-  console.log(checkHand($playerHand));
 
 }
-
-
-// dealHand function deals initial two cards to player and dealer
-// then it checks to see if anyone has 21 by visiting the checkwin function
-// then it
 
 function checkHand(cards){//takes an array of cards and checks to see if they bust, are 21, etc
   var cardNums = [];
@@ -115,7 +106,4 @@ function playerHit(){//chooses another card at random and adds it to player arra
   $playerHand.push($deck[random]);
   $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
   $deck.splice(random, 1);
-  console.log($playerHand);
-  console.log(checkHand($playerHand));
-
 }
