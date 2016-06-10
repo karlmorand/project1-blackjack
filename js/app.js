@@ -90,9 +90,15 @@ function dealHand(){//get a random number that is up to the length of the cards 
 function checkHand(cards){//takes an array of cards and checks to see if they bust, are 21, etc
   var cardNums = [];
   for (var i = 0; i < cards.length; i++) { //convert card strings to numbers
-    if (cards[i].length<3) {
-      cardNums.push(parseInt((cards[i].charAt(1)));
-    } else {cardNums.push('10')}
+    if (['j','q','k','a'].includes(cards[i].charAt(0))) {cardNums.push(10)}
+      // else if (cards[i].charAt(0)==='a') {} not sure how to handle ace yet
+      else if (cards[i].length<3) {cardNums.push(parseInt(cards[i].charAt(0)));}
+      else {cardNums.push('10')}
+  }
+  var handTotal = 0;
+  for (var i = 0; i < cardNums.length; i++) {
+    handTotal += cardNums[i];
   }
   console.log(cardNums);
+  console.log(handTotal);
 }
