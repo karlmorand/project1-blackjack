@@ -54,7 +54,7 @@ function createTable(){//creates the card table and hit and hold buttons and fin
 
   //Removing the start button and adding hit and hold buttons
   $('#startButton').remove();
-  var $hitButton = $('<button>').text('Hit').attr('id','hitButton').addClass('button');
+  var $hitButton = $('<button>').text('Hit').attr('id','hitButton').addClass('button').click(playerHit);
   var $holdButton = $('<button>').text('Hold').attr('id','holdButton').addClass('button');
   $cardTable.append($hitButton, $holdButton);
 
@@ -100,8 +100,6 @@ function checkHand(cards){//takes an array of cards and checks to see if they bu
   for (var i = 0; i < cardNums.length; i++) {
     handTotal += cardNums[i];
   }
-
-
   if (handTotal > 21) {
     return 'bust';
   } else if (handTotal === 21 && cardNums.length === 2){
@@ -110,6 +108,14 @@ function checkHand(cards){//takes an array of cards and checks to see if they bu
     else {
       return handTotal;
     }
+}
 
+function playerHit(){//chooses another card at random and adds it to player array
+  var random = Math.floor(Math.random()*$deck.length);
+  $playerHand.push($deck[random]);
+  $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
+  $deck.splice(random, 1);
+  console.log($playerHand);
+  console.log(checkHand($playerHand));
 
 }
