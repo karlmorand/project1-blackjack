@@ -7,15 +7,6 @@ var $deck = [];
 var $playerHand = [];
 var $dealerHand = [];
 
-
-function buildDeck(){ //builds the deck of cards and adds them to $deck array
-  for (var i = 2; i <= 10; i++) {
-    $deck.push(i+'c', i+'d', i+'h',i+'s');
-  }
-  $deck.push('js','qs','ks','as','jd','qd','kd','ad','jc','qc','kc','ac','jh','qh','kh','ah')
-  console.log($deck);
-  console.log($deck.length);
-}
 function launchScreen(){ // Loads the page title, rules, dealer guidleines, and a start button to begin playing the game
   var $heading = $('<h1>').text('Blackjack');
   $('body').append($heading);
@@ -36,6 +27,15 @@ function launchScreen(){ // Loads the page title, rules, dealer guidleines, and 
 
   var $startButton = $("<button>").text('Start Game').click(createTable).attr('id', 'startButton').addClass('button');
   $('body').append($startButton);
+}
+
+function buildDeck(){ //builds the deck of cards and adds them to $deck array
+  for (var i = 2; i <= 10; i++) {
+    $deck.push(i+'c', i+'d', i+'h',i+'s');
+  }
+  $deck.push('js','qs','ks','as','jd','qd','kd','ad','jc','qc','kc','ac','jh','qh','kh','ah')
+  console.log($deck);
+  console.log($deck.length);
 }
 
 function createTable(){//creates the card table and hit and hold buttons and finally calls shuffleDeal to begin the game
@@ -61,7 +61,8 @@ function createTable(){//creates the card table and hit and hold buttons and fin
   $('body').append($dealerTable,$cardTable);
   dealHand();
 }
-function dealHand(){//get a random number that is up to the length of the cards array, pull the card at that index and assign it to an array of the player or dealers hand, remove the item from the array
+
+function dealHand(){//deals the initial 2 cards to the player and dealer
 
   for (var i = 2; i < 6; i++) {
     if (i%2===0) {//player
@@ -76,10 +77,13 @@ function dealHand(){//get a random number that is up to the length of the cards 
       $deck.splice(random, 1);
       }
   }
+  checkHand($playerHand, 'player');
+  checkHand($dealerHand, 'dealer');
+
 
 }
 
-function checkHand(cards){//takes an array of cards and checks to see if they bust, are 21, etc
+function checkHand(cards, person){//takes an array of cards and checks to see if they bust, are 21, etc
   var cardNums = [];
   for (var i = 0; i < cards.length; i++) { //convert card strings to numbers
     if (['j','q','k','a'].includes(cards[i].charAt(0))) {cardNums.push(10)}
@@ -92,9 +96,9 @@ function checkHand(cards){//takes an array of cards and checks to see if they bu
     handTotal += cardNums[i];
   }
   if (handTotal > 21) {
-    return 'bust';
+    bust(person);
   } else if (handTotal === 21 && cardNums.length === 2){
-    return 'blackjack'
+    blackjack(person);
   }
     else {
       return handTotal;
@@ -106,4 +110,14 @@ function playerHit(){//chooses another card at random and adds it to player arra
   $playerHand.push($deck[random]);
   $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
   $deck.splice(random, 1);
+  checkHand($playerHand, 'player')
+}
+
+function bust(person){//if one person busts this executes
+  console.log(person + ' busted');
+}
+function blackjack(person){//if one person gets blackjack this executes
+  console.log(person + ' blackjack');
+}
+function whoWins(){//if on bust or blacjack this figures out the winner by comparing scores
 }
