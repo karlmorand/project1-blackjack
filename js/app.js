@@ -78,6 +78,7 @@ function dealHand(){//get a random number that is up to the length of the cards 
     }
   }
   console.log($deck.length);
+  checkHand($playerHand);
 
 }
 
@@ -85,3 +86,13 @@ function dealHand(){//get a random number that is up to the length of the cards 
 // dealHand function deals initial two cards to player and dealer
 // then it checks to see if anyone has 21 by visiting the checkwin function
 // then it
+
+function checkHand(cards){//takes an array of cards and checks to see if they bust, are 21, etc
+  var cardNums = [];
+  for (var i = 0; i < cards.length; i++) { //convert card strings to numbers
+    if (cards[i].length<3) {
+      cardNums.push(parseInt((cards[i].charAt(1)));
+    } else {cardNums.push('10')}
+  }
+  console.log(cardNums);
+}
