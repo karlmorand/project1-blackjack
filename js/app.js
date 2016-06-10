@@ -104,7 +104,7 @@ function checkHand(cards){//takes an array of cards and checks to see if they bu
 
   if (handTotal > 21) {
     return 'bust';
-  } else if (handTotal === 21){
+  } else if (handTotal === 21 && cardNums.length === 2){
     return 'blackjack'
   }
     else {
