@@ -78,7 +78,8 @@ function dealHand(){//get a random number that is up to the length of the cards 
     }
   }
   console.log($deck.length);
-  checkHand($playerHand);
+  console.log(checkHand($dealerHand));
+  console.log(checkHand($playerHand));
 
 }
 
@@ -99,6 +100,16 @@ function checkHand(cards){//takes an array of cards and checks to see if they bu
   for (var i = 0; i < cardNums.length; i++) {
     handTotal += cardNums[i];
   }
-  console.log(cardNums);
-  console.log(handTotal);
+
+
+  if (handTotal > 21) {
+    return 'bust';
+  } else if (handTotal === 21){
+    return 'blackjack'
+  }
+    else {
+      return handTotal;
+    }
+
+
 }
