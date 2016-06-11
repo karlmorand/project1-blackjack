@@ -99,8 +99,6 @@ function playerHit(){//chooses another card at random and adds it to player arra
   }
 }
 
-
-
 function handTotal(cards, person){//takes an array of cards and adds them together, assigns the result to the playerTotal or dealerTotal variable
   var cardNums = [];
   for (var i = 0; i < cards.length; i++) { //convert card strings to numbers
@@ -126,14 +124,23 @@ function bust(person){//if one person busts this executes
 }
 
 function dealerPlay(){//invoked when the player clicks the hold button
-  while (handTotal($dealerHand, 'dealer')<17) {
-    var random = Math.floor(Math.random()*$deck.length);
-    $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
-    $dealerHand.push($deck[random]);
-    $deck.splice(random, 1);
+  //needs to check if dealer busted, if not is dealer under 17, if so then hit...and repeat
+  var dealerPlaying = true;
+  while (dealerPlaying) {
+      if (handTotal($dealerHand, 'dealer') > 21) {//dealer busted
+        dealerPlaying = false;
+        bust('dealer')
+      } else if (handTotal($dealerHand, 'dealer') < 17) {//dealer needs to hit
+      var random = Math.floor(Math.random()*$deck.length);
+      $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
+      $dealerHand.push($deck[random]);
+      $deck.splice(random, 1);
+    } else {
+      dealerPlaying = false
+    }
   }
-  whoWins();
 }
+
 
 
 // when the player clicks hold button call Dealer play function which will keep hitting dealer till he has 17
