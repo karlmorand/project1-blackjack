@@ -43,13 +43,13 @@ function buildDeck(){ //builds the deck of cards and adds them to $deck array
 
 function createTable(){//creates the card table and hit and hold buttons and finally calls dealhand to begin the game
   buildDeck();
+
+
+
   console.log('entered shuffleDeal');
   var $cardTable = $('<div>').attr('id','cardTable');
-
   var $dealerTable = $('<div>').attr('id','dealerTable');
   var $dealerLabel = $('<h2>').text("Dealer's Cards");
-  $dealerTable.append($dealerLabel);
-
   var $playerLabel = $('<h2>').text("Your Cards");
 
   $cardTable.append($playerLabel);
@@ -59,9 +59,8 @@ function createTable(){//creates the card table and hit and hold buttons and fin
   $('#startButton').remove();
   var $hitButton = $('<button>').text('Hit').attr('id','hitButton').addClass('button').click(playerHit);
   var $holdButton = $('<button>').text('Hold').attr('id','holdButton').addClass('button').click(dealerPlay);
-  $cardTable.append($hitButton, $holdButton);
+  $('body').append($dealerLabel,$dealerTable,$playerLabel,$cardTable, $hitButton, $holdButton);
 
-  $('body').append($dealerTable,$cardTable);
   dealHand();
 }
 

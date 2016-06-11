@@ -40,7 +40,7 @@ p {
 }
 
 #dealerTable {
-  display: flex;
+  display: block;
   background-color: grey;
   width: 100vw;
   height: 40vh;
