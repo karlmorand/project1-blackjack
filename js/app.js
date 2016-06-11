@@ -6,6 +6,8 @@ $(function(){
 var $deck = [];
 var $playerHand = [];
 var $dealerHand = [];
+var $playerTotal = 0;
+var $dealerTotal = 0;
 
 function launchScreen(){ // Loads the page title, rules, dealer guidleines, and a start button to begin playing the game
   var $heading = $('<h1>').text('Blackjack');
@@ -77,13 +79,13 @@ function dealHand(){//deals the initial 2 cards to the player and dealer
       $deck.splice(random, 1);
       }
   }
-  checkHand($playerHand, 'player');
-  checkHand($dealerHand, 'dealer');
+  handTotal($playerHand, 'player');
+  handTotal($dealerHand, 'dealer');
 
 
 }
 
-function checkHand(cards, person){//takes an array of cards and checks to see if they bust or 21
+function handTotal(cards, person){//takes an array of cards and adds them together, assigns the result to the playerTotal or dealerTotal variable
   var cardNums = [];
   for (var i = 0; i < cards.length; i++) { //convert card strings to numbers
     if (['j','q','k','a'].includes(cards[i].charAt(0))) {cardNums.push(10)}
@@ -96,7 +98,13 @@ function checkHand(cards, person){//takes an array of cards and checks to see if
   for (var i = 0; i < cardNums.length; i++) {
     handTotal += cardNums[i];
   }
-    console.log('handTotal: ' + person + ' ' + handTotal);
+  if (person === 'player') {
+    $playerTotal = handTotal;
+  } else {
+    $dealerTotal = handTotal;
+  }
+
+function handResult
   if (handTotal > 21) {
     bust(person);
   } else if (handTotal === 21 && cardNums.length === 2){
@@ -111,7 +119,7 @@ function playerHit(){//chooses another card at random and adds it to player arra
   $playerHand.push($deck[random]);
   $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
   $deck.splice(random, 1);
-  checkHand($playerHand, 'player')
+  handTotal($playerHand, 'player')
 }
 
 function bust(person){//if one person busts this executes
@@ -119,7 +127,7 @@ function bust(person){//if one person busts this executes
 }
 
 function dealerPlay(){
-  while (checkHand($dealerHand, 'dealer')<17) {
+  while (handTotal($dealerHand, 'dealer')<17) {
     var random = Math.floor(Math.random()*$deck.length);
     $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
     $dealerHand.push($deck[random]);
@@ -137,8 +145,8 @@ function blackjack(person){//if one person gets blackjack this executes
   console.log(person + ' blackjack');
 }
 function whoWins(){//if no bust or blacjack this figures out the winner by comparing scores
-  var $playerTotal = checkHand($playerHand, 'player');
-  var $dealerTotal = checkHand($dealerTotal, 'dealer');
+  var $playerTotal = handTotal($playerHand, 'player');
+  var $dealerTotal = handTotal($dealerTotal, 'dealer');
 
   if ($playerTotal >= $dealerTotal) {
     winner('player');
