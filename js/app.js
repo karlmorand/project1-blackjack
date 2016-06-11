@@ -55,7 +55,7 @@ function createTable(){//creates the card table and hit and hold buttons and fin
   //Removing the start button and adding hit and hold buttons
   $('#startButton').remove();
   var $hitButton = $('<button>').text('Hit').attr('id','hitButton').addClass('button').click(playerHit);
-  var $holdButton = $('<button>').text('Hold').attr('id','holdButton').addClass('button');
+  var $holdButton = $('<button>').text('Hold').attr('id','holdButton').addClass('button').click(dealerPlay);
   $cardTable.append($hitButton, $holdButton);
 
   $('body').append($dealerTable,$cardTable);
@@ -83,7 +83,7 @@ function dealHand(){//deals the initial 2 cards to the player and dealer
 
 }
 
-function checkHand(cards, person){//takes an array of cards and checks to see if they bust, are 21, etc
+function checkHand(cards, person){//takes an array of cards and checks to see if they bust or 21
   var cardNums = [];
   for (var i = 0; i < cards.length; i++) { //convert card strings to numbers
     if (['j','q','k','a'].includes(cards[i].charAt(0))) {cardNums.push(10)}
@@ -99,10 +99,9 @@ function checkHand(cards, person){//takes an array of cards and checks to see if
     bust(person);
   } else if (handTotal === 21 && cardNums.length === 2){
     blackjack(person);
+  }  else {
+    return handTotal
   }
-    else {
-      return handTotal;
-    }
 }
 
 function playerHit(){//chooses another card at random and adds it to player array
@@ -116,8 +115,33 @@ function playerHit(){//chooses another card at random and adds it to player arra
 function bust(person){//if one person busts this executes
   console.log(person + ' busted');
 }
+
+function dealerPlay(){
+  while(checkHand($dealerHand)<17){
+    var random = Math.floor(Math.random()*$deck.length);
+    $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
+    $dealerHand.push($deck[random]);
+    $deck.splice(random, 1);
+  }
+}
+
+
+// when the player clicks hold button call Dealer play function which will keep hitting dealer till he has 17
+
+
+
 function blackjack(person){//if one person gets blackjack this executes
   console.log(person + ' blackjack');
 }
 function whoWins(){//if on bust or blacjack this figures out the winner by comparing scores
+  var $playerTotal = checkHand($playerHand);
+  var $dealerTotal = checkHand($dealerTotal);
+
+  if ($playerTotal >= $dealerTotal) {
+    winner('player');
+  }
+
+function winner(person){
+  console.log('the winner is: ' + person);
+
 }
