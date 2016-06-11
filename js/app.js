@@ -89,14 +89,14 @@ function checkHand(cards, person){//takes an array of cards and checks to see if
     if (['j','q','k','a'].includes(cards[i].charAt(0))) {cardNums.push(10)}
       // else if (cards[i].charAt(0)==='a') {} not sure how to handle ace yet
       else if (cards[i].length<3) {cardNums.push(parseInt(cards[i].charAt(0)));}
-      else {cardNums.push('10')}
+      else {cardNums.push(10)}
   }
   var handTotal = 0;
 
   for (var i = 0; i < cardNums.length; i++) {
     handTotal += cardNums[i];
   }
-    console.log('handTotal: ' + handTotal);
+    console.log('handTotal: ' + person + ' ' + handTotal);
   if (handTotal > 21) {
     bust(person);
   } else if (handTotal === 21 && cardNums.length === 2){
@@ -119,7 +119,7 @@ function bust(person){//if one person busts this executes
 }
 
 function dealerPlay(){
-  while(checkHand($dealerHand)<17){
+  while (checkHand($dealerHand, 'dealer')<17) {
     var random = Math.floor(Math.random()*$deck.length);
     $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
     $dealerHand.push($deck[random]);
@@ -137,8 +137,8 @@ function blackjack(person){//if one person gets blackjack this executes
   console.log(person + ' blackjack');
 }
 function whoWins(){//if no bust or blacjack this figures out the winner by comparing scores
-  var $playerTotal = checkHand($playerHand);
-  var $dealerTotal = checkHand($dealerTotal);
+  var $playerTotal = checkHand($playerHand, 'player');
+  var $dealerTotal = checkHand($dealerTotal, 'dealer');
 
   if ($playerTotal >= $dealerTotal) {
     winner('player');
