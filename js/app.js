@@ -92,9 +92,11 @@ function checkHand(cards, person){//takes an array of cards and checks to see if
       else {cardNums.push('10')}
   }
   var handTotal = 0;
+
   for (var i = 0; i < cardNums.length; i++) {
     handTotal += cardNums[i];
   }
+    console.log('handTotal: ' + handTotal);
   if (handTotal > 21) {
     bust(person);
   } else if (handTotal === 21 && cardNums.length === 2){
@@ -123,6 +125,7 @@ function dealerPlay(){
     $dealerHand.push($deck[random]);
     $deck.splice(random, 1);
   }
+  whoWins();
 }
 
 
@@ -133,15 +136,15 @@ function dealerPlay(){
 function blackjack(person){//if one person gets blackjack this executes
   console.log(person + ' blackjack');
 }
-function whoWins(){//if on bust or blacjack this figures out the winner by comparing scores
+function whoWins(){//if no bust or blacjack this figures out the winner by comparing scores
   var $playerTotal = checkHand($playerHand);
   var $dealerTotal = checkHand($dealerTotal);
 
   if ($playerTotal >= $dealerTotal) {
     winner('player');
   }
+}
 
 function winner(person){
   console.log('the winner is: ' + person);
-
 }
