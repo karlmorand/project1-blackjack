@@ -94,8 +94,8 @@ function playerHit(){//chooses another card at random and adds it to player arra
   $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
   $deck.splice(random, 1);
   handTotal($playerHand, 'player')
-  if ($playerTotal) {
-
+  if ($playerTotal > 21) {
+    bust('player')
   }
 }
 
@@ -125,7 +125,7 @@ function bust(person){//if one person busts this executes
   console.log(person + ' busted');
 }
 
-function dealerPlay(){
+function dealerPlay(){//invoked when the player clicks the hold button
   while (handTotal($dealerHand, 'dealer')<17) {
     var random = Math.floor(Math.random()*$deck.length);
     $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
