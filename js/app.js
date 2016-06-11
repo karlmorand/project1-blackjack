@@ -143,6 +143,7 @@ function dealerPlay(){//invoked when the player clicks the hold button
       $dealerHand.push($deck[random]);
       $deck.splice(random, 1);
     } else {//Dealer is between 17 and 21 so he doesn't hit again
+      console.log('Dealer holds with: ' + $dealerTotal);
       dealerPlaying = false
       whoWins();
     }
@@ -167,6 +168,8 @@ function whoWins(){//if no bust or blacjack this figures out the winner by compa
 
   if ($playerTotal >= $dealerTotal) {
     winner('player');
+  } else {
+    winner('dealer');
   }
 }
 
