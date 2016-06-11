@@ -9,6 +9,7 @@ var $dealerHand = [];
 var $playerTotal = 0;
 var $dealerTotal = 0;
 
+
 function launchScreen(){ // Loads the page title, rules, dealer guidleines, and a start button to begin playing the game
   var $heading = $('<h1>').text('Blackjack');
   $('body').append($heading);
@@ -40,7 +41,7 @@ function buildDeck(){ //builds the deck of cards and adds them to $deck array
   console.log($deck.length);
 }
 
-function createTable(){//creates the card table and hit and hold buttons and finally calls shuffleDeal to begin the game
+function createTable(){//creates the card table and hit and hold buttons and finally calls dealhand to begin the game
   buildDeck();
   console.log('entered shuffleDeal');
   var $cardTable = $('<div>').attr('id','cardTable');
@@ -65,7 +66,6 @@ function createTable(){//creates the card table and hit and hold buttons and fin
 }
 
 function dealHand(){//deals the initial 2 cards to the player and dealer
-
   for (var i = 2; i < 6; i++) {
     if (i%2===0) {//player
       var random = Math.floor(Math.random()*$deck.length);
@@ -81,9 +81,25 @@ function dealHand(){//deals the initial 2 cards to the player and dealer
   }
   handTotal($playerHand, 'player');
   handTotal($dealerHand, 'dealer');
-
-
+  if ($playerTotal === 21){
+    winner('player');
+  } else if ($dealerTotal === 21){
+    winner('dealer')
+  }
 }
+
+function playerHit(){//chooses another card at random and adds it to player array
+  var random = Math.floor(Math.random()*$deck.length);
+  $playerHand.push($deck[random]);
+  $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
+  $deck.splice(random, 1);
+  handTotal($playerHand, 'player')
+  if ($playerTotal) {
+
+  }
+}
+
+
 
 function handTotal(cards, person){//takes an array of cards and adds them together, assigns the result to the playerTotal or dealerTotal variable
   var cardNums = [];
@@ -103,23 +119,6 @@ function handTotal(cards, person){//takes an array of cards and adds them togeth
   } else {
     $dealerTotal = handTotal;
   }
-
-function handResult
-  if (handTotal > 21) {
-    bust(person);
-  } else if (handTotal === 21 && cardNums.length === 2){
-    blackjack(person);
-  }  else {
-    return handTotal
-  }
-}
-
-function playerHit(){//chooses another card at random and adds it to player array
-  var random = Math.floor(Math.random()*$deck.length);
-  $playerHand.push($deck[random]);
-  $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
-  $deck.splice(random, 1);
-  handTotal($playerHand, 'player')
 }
 
 function bust(person){//if one person busts this executes
@@ -156,3 +155,14 @@ function whoWins(){//if no bust or blacjack this figures out the winner by compa
 function winner(person){
   console.log('the winner is: ' + person);
 }
+
+///////////////////////////////////////////////
+// function handResult(){
+//   if (handTotal > 21) {
+//     bust(person);
+//   } else if (handTotal === 21 && cardNums.length === 2){
+//     blackjack(person);
+//   }  else {
+//     return handTotal
+//   }
+// }
