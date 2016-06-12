@@ -126,11 +126,6 @@ function handTotal(cards, person){//takes an array of cards and adds them togeth
     $dealerTotal = handTotal;
   }
 }
-
-function bust(person){//if one person busts this executes
-  console.log(person + ' busted');
-}
-
 function dealerPlay(){//invoked when the player clicks the hold button
   //needs to check if dealer busted, if not is dealer under 17, if so then hit...and repeat
   console.log('entered dealerPlay, playterTotal & dealerTotal:');
@@ -157,14 +152,16 @@ function dealerPlay(){//invoked when the player clicks the hold button
   }
 }
 
-
-
-// when the player clicks hold button call Dealer play function which will keep hitting dealer till he has 17
-
-
-
+function bust(person){//if one person busts this executes
+  console.log(person + ' busted');
+  if (person === 'dealer') {
+    winner('You');
+  } else {winner('Dealer');}
+}
 function blackjack(person){//if one person gets blackjack this executes
-  console.log(person + ' blackjack');
+  if (person === 'dealer') {
+    winner('Dealer');
+  } else {winner('You');}
 }
 function whoWins(){//if no bust or blacjack this figures out the winner by comparing scores
   console.log('entered whoWins');
@@ -182,15 +179,13 @@ function whoWins(){//if no bust or blacjack this figures out the winner by compa
 
 function winner(person){
   console.log('the winner is: ' + person);
+  var $winnerDiv = $('<div>').attr('id','winnerDiv').text(person+ ' Wins!');
+  $('body').append($winnerDiv);
+  var $playAgainButton = $('<button>').click(function(){
+    $('body').empty();
+    var $heading = $('<h1>').text('Blackjack');
+    $('body').append($heading);
+    createTable();
+  }).text('Play Again');
+  $winnerDiv.prepend($playAgainButton);
 }
-
-///////////////////////////////////////////////
-// function handResult(){
-//   if (handTotal > 21) {
-//     bust(person);
-//   } else if (handTotal === 21 && cardNums.length === 2){
-//     blackjack(person);
-//   }  else {
-//     return handTotal
-//   }
-// }
