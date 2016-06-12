@@ -100,10 +100,15 @@ function playerHit(){//chooses another card at random and adds it to player arra
 
 function handTotal(cards, person){//takes an array of cards and adds them together, assigns the result to the playerTotal or dealerTotal variable
   var cardNums = [];
+  var hasAce = false;
   console.log('entered handTotal, cards: ' + cards);
   for (var i = 0; i < cards.length; i++) { //convert card strings to numbers
     if (['j','q','k'].includes(cards[i].charAt(0))) {cardNums.push(10)}
-      else if (cards[i].charAt(0)==='a') {cardNums.push(11)} //by defualt ace is 11, below it checks if hand busts and then makes it a 1
+      else if (cards[i].charAt(0)==='a') {
+        cardNums.push(11);
+        hasAce = true;
+        console.log('ace found');
+      } //by defualt ace is 11, below it checks if hand busts and then makes it a 1
       else if (cards[i].length<3) {cardNums.push(parseInt(cards[i].charAt(0)));}
       else {cardNums.push(10)}
   }
@@ -112,7 +117,7 @@ function handTotal(cards, person){//takes an array of cards and adds them togeth
   for (var i = 0; i < cardNums.length; i++) {
     handTotal += cardNums[i];
   }
-  if (cardNums.includes('a') && handTotal > 21) {//if there's an ace and the hand is over 21 subtract 10 so the ace acts as a 1
+  if (hasAce && (handTotal > 21)) {//if there's an ace and the hand is over 21 subtract 10 so the ace acts as a 1
       handTotal -= 10;
   }
   if (person === 'player') {
