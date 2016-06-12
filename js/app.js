@@ -69,11 +69,11 @@ function dealHand(){//deals the initial 2 cards to the player and dealer
     if (i%2===0) {//player
       var random = Math.floor(Math.random()*$deck.length);
       $playerHand.push($deck[random]);
-      $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
+      $('#cardTable').append($('<img>').addClass('playerCard').attr('src','images/cards/' + $deck[random] +'.png'));
       $deck.splice(random, 1);
     } else {//dealer
       var random = Math.floor(Math.random()*$deck.length);
-      $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
+      $('#dealerTable').append($('<img>').addClass('dealerCard').attr('src','images/cards/' + $deck[random] +'.png'));
       $dealerHand.push($deck[random]);
       $deck.splice(random, 1);
       }
@@ -90,7 +90,7 @@ function dealHand(){//deals the initial 2 cards to the player and dealer
 function playerHit(){//chooses another card at random and adds it to player array
   var random = Math.floor(Math.random()*$deck.length);
   $playerHand.push($deck[random]);
-  $('#cardTable').append($('<div>').addClass('playerCard').text($deck[random]));
+  $('#cardTable').append($('<img>').addClass('playerCard').attr('src','images/cards/' + $deck[random] +'.png'));
   $deck.splice(random, 1);
   handTotal($playerHand, 'player')
   if ($playerTotal > 21) {
@@ -138,7 +138,7 @@ function dealerPlay(){//invoked when the player clicks the hold button
         bust('dealer')
       } else if ($dealerTotal< 17) {//dealer needs to hit
       var random = Math.floor(Math.random()*$deck.length);
-      $('#dealerTable').append($('<div>').addClass('dealerCard').text($deck[random]));
+      $('#dealerTable').append($('<img>').addClass('dealerCard').attr('src','images/cards/' + $deck[random] +'.png'));
       $dealerHand.push($deck[random]);
       $deck.splice(random, 1);
     } else {//Dealer is between 17 and 21 so he doesn't hit again
