@@ -1,5 +1,6 @@
 body {
   text-align: center;
+
 }
 
 h1 {
@@ -11,12 +12,12 @@ h1 {
 }
 
 h2 {
-  width: 100vw;
+  width: 99vw;
   background-color: #FF7200;
   text-align: center;
   font-size: 6vw;
   color: white;
-  margin-top: 0;
+  margin: 0;
 }
 
 p {
@@ -24,26 +25,28 @@ p {
   margin: 5%;
 }
 
-.cardTable {
+#cardTable {
+  display: flex;
   background-color: green;
-  width: 100vw;
-  height: 50vh;
+  width: 99vw;
+  height: 35vh;
   justify-content: center;
 }
 
 .playerCard {
   display: inline-block;
-  width: 30vw;
-  height: 40vw;
+  flex-shrink: 1;
+  flex-basis: auto;
+  /*width: 30vw;*/
+  /*height: 40vw;*/
   background-color: orange;
   margin: 5%;
 }
 
 #dealerTable {
-  display: block;
-  background-color: grey;
-  width: 100vw;
-  height: 40vh;
+  display: flex;
+  width: 99vw;
+  height: 35vh;
   justify-content: center;
 }
 .dealerCard {
