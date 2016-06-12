@@ -27,35 +27,34 @@ p {
 
 #cardTable {
   display: flex;
-  background-color: green;
+  flex-flow: row wrap;
   width: 99vw;
   height: 35vh;
   justify-content: center;
+  margin-top: 3%;
+
 }
 
 .playerCard {
-  display: inline-block;
   flex-shrink: 1;
-  flex-basis: auto;
-  /*width: 30vw;*/
-  /*height: 40vw;*/
-  background-color: orange;
-  margin: 5%;
+  max-width: 30vw;
+  max-height: 45vw;
 }
 
 #dealerTable {
+  margin-top: 3%;
   display: flex;
+  flex-flow: row wrap;
   width: 99vw;
   height: 35vh;
   justify-content: center;
+
 }
 .dealerCard {
   flex-shrink: 1;
-  display: inline-block;
-  width: 20vw;
-  height: 30vw;
-  background-color: orange;
-  margin: 3%;
+  max-width: 30vw;
+  max-height: 45vw;
+
 
 }
 button {
