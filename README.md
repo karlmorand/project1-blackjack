@@ -19,4 +19,4 @@ Javascript, jQuery, HTML5, CSS3.
 Playing card images are from http://wheels-cards.wc.lt/bo.html This site is also cited in index.html line 9.
 
 ## Unsolved Issues
-I'd like to grow the multiplayer aspect of the game so that a user could play at a table with multiple AI players. The visual design of the game could also be improved.
+I'd like to grow the multiplayer aspect of the game so that a user could play at a table with multiple AI players. The visual design of the game could also be improved. I would also add some timers throughout the game so certain gameplay events happen less instantaneously, which would feel more realistic.
