@@ -179,6 +179,8 @@ function whoWins(){//if no bust or blacjack this figures out the winner by compa
 
 function winner(person){
   console.log('the winner is: ' + person);
+  $('#hitButton').remove;
+  $('#holdButton').remove;
   var $winnerDiv = $('<div>').attr('id','winnerDiv').text(person+ ' Wins!');
   $('body').append($winnerDiv);
   var $playAgainButton = $('<button>').click(function(){

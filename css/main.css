@@ -1,25 +1,26 @@
 html, body {
   text-align: center;
-  width: 100vw;
-  margin: 0;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 750px;
 
 }
 
 h1 {
   text-align: center;
   font-family: 'Lobster', cursive;
-  font-size: 15vw;
+  font-size: 5rem;
   margin: 0 auto;
   color: #FF7200;
-  width: 100vw;
+  width: 100%;
 }
 h2 {
   background-color: #FF7200;
-  padding: 2%;
+  padding: 1%;
   margin: 3% auto;
   color: white;
   font-family: 'Lobster',cursive;
-  font-size: 7vw;
+  font-size: 3rem;
 }
 img {
   width: 15%;
@@ -54,6 +55,18 @@ p {
   font-family: Avenir, sans-serif;
 }
 
+#winnerDiv {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  width: 30%;
+  height: 30%;
+  background-color: rgba(255, 114, 0,.75);
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: 'Lobster',cursive;
+}
 
 
 /*
