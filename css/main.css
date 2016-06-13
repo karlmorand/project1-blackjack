@@ -2,7 +2,7 @@ html, body {
   text-align: center;
   width: 100%;
   margin: 0 auto;
-  max-width: 750px;
+
 
 }
 
@@ -58,16 +58,19 @@ p {
 #winnerDiv {
   position: absolute;
   top: 25%;
-  left: 35%;
-  width: 30%;
-  height: 30%;
-  background-color: rgba(255, 114, 0,.75);
-  color: white;
-  font-size: 3rem;
-  font-weight: bold;
-  font-family: 'Lobster',cursive;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: rgba(65, 191, 70, 0.75);
+
 }
 
+#winnerDiv h1 {
+  color: white;
+  font-size: 5rem;
+  font-weight: bold;
+  font-family: 'Lobster',cursive
+}
 
 /*
 h2 {

@@ -181,7 +181,11 @@ function winner(person){
   console.log('the winner is: ' + person);
   $('#hitButton').remove;
   $('#holdButton').remove;
-  var $winnerDiv = $('<div>').attr('id','winnerDiv').text(person+ ' Wins!');
+  if (person === 'Dealer') {
+    var $winnerDiv = $('<div>').attr('id','winnerDiv').html('<h1>House wins :(</h1></br>');
+  } else {
+  var $winnerDiv = $('<div>').attr('id','winnerDiv').html('<h1>You Win!</h1></br>');
+}
   $('body').append($winnerDiv);
   var $playAgainButton = $('<button>').click(function(){
     $('body').empty();
@@ -189,5 +193,5 @@ function winner(person){
     $('body').append($heading);
     createTable();
   }).text('Play Again');
-  $winnerDiv.prepend($playAgainButton);
+  $winnerDiv.append($playAgainButton);
 }
