@@ -75,7 +75,7 @@ function dealHand(){//deals the initial 2 cards to the player and dealer
     } else {//dealer
       if (dealerFirstCard) {
       var random = Math.floor(Math.random()*$deck.length);
-      $('#dealerTable').append($('<img>').addClass('dealerCard').attr('src','images/cards/_Back.png'));
+      $('#dealerTable').append($('<img>').addClass('dealerCard').attr({src:'images/cards/_Back.png', id:'dealerFirst'}));
       $dealerHand.push($deck[random]);
       $deck.splice(random, 1);
       dealerFirstCard = false;
@@ -166,11 +166,11 @@ function bust(person){//if one person busts this executes
   console.log(person + ' busted');
   if (person === 'dealer') {
     winner('You');
-  } else {winner('Dealer');}
+  } else {winner('dealer');}
 }
 function blackjack(person){//if one person gets blackjack this executes
   if (person === 'dealer') {
-    winner('Dealer');
+    winner('dealer');
   } else {winner('You');}
 }
 function whoWins(){//if no bust or blacjack this figures out the winner by comparing scores
@@ -189,9 +189,8 @@ function whoWins(){//if no bust or blacjack this figures out the winner by compa
 
 function winner(person){
   console.log('the winner is: ' + person);
-  $('#hitButton').remove;
-  $('#holdButton').remove;
-  if (person === 'Dealer') {
+  $('#dealerFirst').attr('src','images/cards/' + $dealerHand[0] + '.png');
+  if (person === 'dealer') {
     var $winnerDiv = $('<div>').attr('id','winnerDiv').html('<h1>House wins :(</h1></br>');
   } else {
   var $winnerDiv = $('<div>').attr('id','winnerDiv').html('<h1>You Win!</h1></br>');
