@@ -113,7 +113,6 @@ function dealHand(){//deals the initial 2 cards to the player and dealer
     }
 }
 
-
 function playerHit(){//chooses another card at random and adds it to player array
   var random = Math.floor(Math.random()*$deck.length);
   $playerHand.push($deck[random]);
@@ -153,6 +152,7 @@ function handTotal(cards, person){//takes an array of cards and adds them togeth
     $dealerTotal = handTotal;
   }
 }
+
 function dealerPlay(){//invoked when the player clicks the hold button
   //needs to check if dealer busted, if not is dealer under 17, if so then hit...and repeat
   console.log('entered dealerPlay, playterTotal & dealerTotal:');
@@ -185,11 +185,13 @@ function bust(person){//if one person busts this executes
     winner('You');
   } else {winner('dealer');}
 }
+
 function blackjack(person){//if one person gets blackjack this executes
   if (person === 'dealer') {
     winner('dealer');
   } else {winner('You');}
 }
+
 function whoWins(){//if no bust or blacjack this figures out the winner by comparing scores
   console.log('entered whoWins');
   console.log($playerTotal);
@@ -204,7 +206,7 @@ function whoWins(){//if no bust or blacjack this figures out the winner by compa
   }
 }
 
-function winner(person){
+  function winner(person){
   console.log('the winner is: ' + person);
   $('#dealerFirst').attr('src','images/cards/' + $dealerHand[0] + '.png');
   if (person === 'dealer') {
@@ -212,7 +214,7 @@ function winner(person){
     $playerBet = 0;
     var $winnerDiv = $('<div>').attr('id','winnerDiv').html('<h1>House wins :(</h1></br>');
   } else {
-    $playerCash += $playerBet;
+    $playerCash = $playerCash + $playerBet;
     $playerBet = 0;
   var $winnerDiv = $('<div>').attr('id','winnerDiv').html('<h1>You Win!</h1></br>');
 }
