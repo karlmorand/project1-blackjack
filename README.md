@@ -1,16 +1,22 @@
-# project1-blackjack
-GA WDI-Remote project 1. Blackjack game.
+# Project #1 - Blackjack
 
-**Basic Structure** - Two (human) player blackjack game. A player wins by having their total of cards reach 21 or be closer to 21 than their opponent. If they go over 21 then they lose.
+## Description
+A blackjack game where the user can play against the AI dealer. Betting is built into the game as a way to track wins and losses across multiple games.  
 
-**Solo gameplay** - The player and dealer recieve two cards, only one of the dealer's cards is visible to the player. The player then decides to stay or take more cards to try to reach 21. If the player goes over 21 they bust, and the game is over. Once the player decides to stay the dealer will play, following the established rules for when a dealer will hit or stay. At the end of the dealer's turn the winner of the game is decided.
+https://karlmorand.github.io/project1-blackjack/
 
-**Gameplay for 2** - Both players are dealt two cards 'face-down' (meaning player two shouldn't be looking at the screen). P1 has the option to get an additional card or hold at what he has. P1 can take as many cards as he wants to try to get close to 21. Once he decides to stop taking cards his turn is over and player 2 can decide to take additional cards or hold. Once player two decides to hold, and assuming neither player has busted, it is the dealer's turn. Once the dealer has played, based on the dealer's rules, the game will end and a winner will be decided.
+## Game Rules  
+The dealer deals two cards to himself and the player, starting with the player. Only one of the dealer's cards is visible to the player. If the player's cards total 21 on the initial deal the player wins.  
 
-**Goals**
-  - Play against an AI dealer and other AI 'people'  
-  - Ability for player to split hand if they are dealt a pair  
-  - Betting as a more interesting way to keep score over multiple games  
-  - Local storage to track results across sessions  
-  - Skeuomorphic gaming table and sounds
-  - Mobile layout for enhanced two player game where the phone can be passed back and forth
+The player then has the option to receive an additional card ('Hit') or end their turn. They can take as many additional cards as they'd like, with the goal being to have the sum of their cards equal 21. If the player goes over 21 he busts and the dealer wins.  
+
+The player starts with $500 to bet with, and can make a bet before each game. All ties go to the player. Aces can be used as a 1 or 11.
+
+## Technologies
+Javascript, jQuery, HTML5, CSS3.
+
+## Resources
+Playing card images are from http://wheels-cards.wc.lt/bo.html This site is also cited in index.html line 9.
+
+## Unsolved Issues
+I'd like to grow the multiplayer aspect of the game so that a user could play at a table with multiple AI players. The visual design of the game could also be improved.
