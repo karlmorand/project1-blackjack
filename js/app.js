@@ -6,6 +6,8 @@ $(function(){
 var $deck = [];
 var $playerHand = [];
 var $dealerHand = [];
+var $playerCash = 500;
+var $playerBet = 0;
 var $playerTotal = 0;
 var $dealerTotal = 0;
 
@@ -28,7 +30,7 @@ function launchScreen(){ // Loads the page title, rules, dealer guidleines, and 
   $dealerGuideDiv.append($dealerGuide);
   $('body').append($dealerGuideDiv);
 
-  var $startButton = $("<button>").text('Start Game').click(createTable).attr('id', 'startButton').addClass('button');
+  var $startButton = $("<button>").text('Start Game').click(bettingScreen).attr('id', 'startButton').addClass('button');
   $('body').append($startButton);
 }
 
@@ -41,12 +43,34 @@ function buildDeck(){ //builds the deck of cards and adds them to $deck array
   console.log($deck.length);
 }
 
+function bettingScreen() {
+  $('body').empty()
+  var $heading = $('<h1>').text('Blackjack');
+
+
+  var $betInst = $('<p>').text("Enter the amount you'd like to bet on this hand. You currently have $" + $playerCash + " available to bet.");
+  var $userBet = $('<input>').attr('type', 'number');
+  var $submitBet = $('<button>').text('Place Bet').click(function(){
+    $playerBet = $userBet.val();
+    console.log('you just bet: ' + $playerBet);
+    createTable();
+  })
+
+  $('body').append($heading,$betInst,$userBet,$submitBet);
+
+
+
+}
+
+
+
+
+
+
+
+
 function createTable(){//creates the card table and hit and hold buttons and finally calls dealhand to begin the game
   buildDeck();
-
-
-
-  console.log('entered shuffleDeal');
   var $cardTable = $('<div>').attr('id','cardTable');
   var $dealerTable = $('<div>').attr('id','dealerTable');
   var $dealerLabel = $('<h2>').text("Dealer's Cards");

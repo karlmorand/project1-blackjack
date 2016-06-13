@@ -72,6 +72,10 @@ p {
   font-weight: bold;
   font-family: 'Lobster',cursive
 }
+input {
+  display: block;
+  margin: 0 auto; 
+}
 
 /*
 h2 {
