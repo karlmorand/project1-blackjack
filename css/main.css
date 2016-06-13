@@ -1,5 +1,7 @@
-body {
+html, body {
   text-align: center;
+  width: 100vw;
+  margin: 0;
 
 }
 
@@ -9,8 +11,52 @@ h1 {
   font-size: 15vw;
   margin: 0 auto;
   color: #FF7200;
+  width: 100vw;
+}
+h2 {
+  background-color: #FF7200;
+  padding: 2%;
+  margin: 3% auto;
+  color: white;
+  font-family: 'Lobster',cursive;
+  font-size: 7vw;
+}
+img {
+  width: 15%;
+  height: 15%;
+  margin: 0 1%;
+
 }
 
+#dealerTable, #cardTable {
+  display: flex;
+  justify-content: center;
+
+}
+
+button {
+  margin-top: 5%;
+  background-color: #FF7200;
+  color: white;
+  padding: 2%;
+  font-size: 2vw;
+  margin: 3%;
+
+
+}
+
+button:hover{
+  background-color: red;
+}
+
+p {
+  padding: 0 3%;
+  font-family: Avenir, sans-serif;
+}
+
+
+
+/*
 h2 {
   width: 99vw;
   background-color: #FF7200;
@@ -62,7 +108,7 @@ button {
 
 }
 #winnerDiv {
-  background-color: orange;
+  background-color: #FF7200;
   color: white;
   z-index: 2;
   width: 60vw;
@@ -85,4 +131,4 @@ button {
     margin: 1%;
 
   }
-}
+}*/
