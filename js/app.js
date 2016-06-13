@@ -53,24 +53,17 @@ function bettingScreen() {
   var $submitBet = $('<button>').text('Place Bet').click(function(){
     $playerBet = $userBet.val();
     console.log('you just bet: ' + $playerBet);
+    $('body').empty();
     createTable();
   })
-
   $('body').append($heading,$betInst,$userBet,$submitBet);
-
-
-
 }
-
-
-
-
-
-
 
 
 function createTable(){//creates the card table and hit and hold buttons and finally calls dealhand to begin the game
   buildDeck();
+  var $heading = $('<h1>').text('Blackjack');
+  $('body').append($heading)
   var $cardTable = $('<div>').attr('id','cardTable');
   var $dealerTable = $('<div>').attr('id','dealerTable');
   var $dealerLabel = $('<h2>').text("Dealer's Cards");
@@ -215,21 +208,23 @@ function winner(person){
   console.log('the winner is: ' + person);
   $('#dealerFirst').attr('src','images/cards/' + $dealerHand[0] + '.png');
   if (person === 'dealer') {
+    $playerCash -= $playerBet;
+    $playerBet = 0;
     var $winnerDiv = $('<div>').attr('id','winnerDiv').html('<h1>House wins :(</h1></br>');
   } else {
+    $playerCash += $playerBet;
+    $playerBet = 0;
   var $winnerDiv = $('<div>').attr('id','winnerDiv').html('<h1>You Win!</h1></br>');
 }
   $('body').append($winnerDiv);
   var $playAgainButton = $('<button>').click(function(){
     $('body').empty();
-    var $heading = $('<h1>').text('Blackjack');
-    $('body').append($heading);
     $deck = [];
     $playerHand = [];
     $dealerHand = [];
     $playerTotal = 0;
     $dealerTotal = 0;
-    createTable();
+    bettingScreen();
   }).text('Play Again');
   $winnerDiv.append($playAgainButton);
 }
