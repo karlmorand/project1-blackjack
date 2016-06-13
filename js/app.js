@@ -70,20 +70,22 @@ function dealHand(){//deals the initial 2 cards to the player and dealer
     if (i%2===0) {//player
       var random = Math.floor(Math.random()*$deck.length);
       $playerHand.push($deck[random]);
-      $('#cardTable').append($('<img>').addClass('playerCard').attr('src','images/cards/_Back.png'));
+      $('#cardTable').append($('<img>').addClass('playerCard').attr('src','images/cards/' + $deck[random] +'.png'));
       $deck.splice(random, 1);
     } else {//dealer
       if (dealerFirstCard) {
       var random = Math.floor(Math.random()*$deck.length);
-      $('#dealerTable').append($('<img>').addClass('dealerCard').attr('src','images/cards/' + $deck[random] +'.png'));
+      $('#dealerTable').append($('<img>').addClass('dealerCard').attr('src','images/cards/_Back.png'));
       $dealerHand.push($deck[random]);
       $deck.splice(random, 1);
+      dealerFirstCard = false;
     } else {
       var random = Math.floor(Math.random()*$deck.length);
       $('#dealerTable').append($('<img>').addClass('dealerCard').attr('src','images/cards/' + $deck[random] +'.png'));
       $dealerHand.push($deck[random]);
       $deck.splice(random, 1);
       }
+    }
   }
   handTotal($playerHand, 'player');
   handTotal($dealerHand, 'dealer');
@@ -91,8 +93,9 @@ function dealHand(){//deals the initial 2 cards to the player and dealer
     winner('player');
   } else if ($dealerTotal === 21){
     winner('dealer')
-  }
+    }
 }
+
 
 function playerHit(){//chooses another card at random and adds it to player array
   var random = Math.floor(Math.random()*$deck.length);
