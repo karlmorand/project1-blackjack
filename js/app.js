@@ -191,6 +191,11 @@ function winner(person){
     $('body').empty();
     var $heading = $('<h1>').text('Blackjack');
     $('body').append($heading);
+    $deck = [];
+    $playerHand = [];
+    $dealerHand = [];
+    $playerTotal = 0;
+    $dealerTotal = 0;
     createTable();
   }).text('Play Again');
   $winnerDiv.append($playAgainButton);
