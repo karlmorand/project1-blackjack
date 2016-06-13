@@ -65,13 +65,20 @@ function createTable(){//creates the card table and hit and hold buttons and fin
 }
 
 function dealHand(){//deals the initial 2 cards to the player and dealer
+  var dealerFirstCard = true;
   for (var i = 2; i < 6; i++) {
     if (i%2===0) {//player
       var random = Math.floor(Math.random()*$deck.length);
       $playerHand.push($deck[random]);
-      $('#cardTable').append($('<img>').addClass('playerCard').attr('src','images/cards/' + $deck[random] +'.png'));
+      $('#cardTable').append($('<img>').addClass('playerCard').attr('src','images/cards/_Back.png'));
       $deck.splice(random, 1);
     } else {//dealer
+      if (dealerFirstCard) {
+      var random = Math.floor(Math.random()*$deck.length);
+      $('#dealerTable').append($('<img>').addClass('dealerCard').attr('src','images/cards/' + $deck[random] +'.png'));
+      $dealerHand.push($deck[random]);
+      $deck.splice(random, 1);
+    } else {
       var random = Math.floor(Math.random()*$deck.length);
       $('#dealerTable').append($('<img>').addClass('dealerCard').attr('src','images/cards/' + $deck[random] +'.png'));
       $dealerHand.push($deck[random]);
